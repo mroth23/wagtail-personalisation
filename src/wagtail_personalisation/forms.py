@@ -1,14 +1,21 @@
 from datetime import datetime
 from importlib import import_module
 
+import django
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.test.client import RequestFactory
-from django.utils.lru_cache import lru_cache
 from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.forms import WagtailAdminModelForm
+
+if django.VERSION >= (3, 0):
+    from functools import lru_cache
+    from django.templatetags.static import static
+else:
+    # Features removed in Django 3.0
+    from django.utils.lru_cache import lru_cache
+    from django.contrib.staticfiles.templatetags.staticfiles import static
 
 SessionStore = import_module(settings.SESSION_ENGINE).SessionStore
 
