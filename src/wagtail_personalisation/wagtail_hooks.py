@@ -146,7 +146,7 @@ def page_listing_variant_buttons(page, page_perms, is_parent=False, next_url=Non
 
 
 @hooks.register('register_page_listing_variant_buttons')
-def page_listing_more_buttons(page, page_perms, is_parent=False):
+def page_listing_more_buttons(page, page_perms, is_parent=False, next_url=None):
     """Adds a 'more' button to personalisable pages allowing users to quickly
     create a new variant for the selected segment.
 
